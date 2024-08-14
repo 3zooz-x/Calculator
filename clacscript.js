@@ -9,7 +9,7 @@ const multiply = function (a, b) {
 }
 const divide =  function (a, b) {
     if (b == 0) {
-        return 'ERROR PLEASE CLEAR';
+        return 'ERROR';
     }
     else {
         return a / b;
@@ -35,12 +35,19 @@ const equal = document.querySelector("#equal");
 const clear = document.querySelector("#clear");
 const point = document.querySelector("#point");
 const bs = document.querySelector("#backSpace");
+const neg = document.querySelector("#negative");
 let firstNumber;
 let operator = '';
 let secondNumber = '';
 buttons.forEach(button =>{
     button.addEventListener("click", () => {
        if (Number.isInteger(Number(button.textContent))) {
+            if (dis.textContent == "ERROR") {
+                firstNumber = '';
+                operator = '';
+                secondNumber = '';
+                return dis.textContent = button.textContent;
+            } 
             if (dis.textContent == '0') {
                 dis.textContent = button.textContent;
                 return;
@@ -91,7 +98,15 @@ point.addEventListener("click", () => {
 });
 bs.addEventListener("click", () => {
     dis.textContent = dis.textContent.substring(0, dis.textContent.length - 1);
-})
+});
+neg.addEventListener("click", () => {
+    if (!(dis.textContent.includes('-'))) {
+       return dis.textContent = '-' + dis.textContent;
+    }
+    if (dis.textContent.includes('-')) {
+        dis.textContent = dis.textContent.substring(1, dis.textContent.length);
+    }
+});
 
 
 
